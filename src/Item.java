@@ -2,12 +2,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Item {
     private int itemID;
-    private AtomicInteger itemCount;
+    private AtomicInteger itemCount = new AtomicInteger(1);
     private String name;
     private double price;
     private String pictureFilename;
     private int sellerID;
-    
+
 
     public Item(String name, double price, String pictureFilename, int sellerID) {
         this.name = name;
