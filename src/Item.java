@@ -2,7 +2,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Item {
     private int itemID;
-    private AtomicInteger itemCount = new AtomicInteger(1);
+    private static AtomicInteger itemCount = new AtomicInteger(1);
     private String name;
     private double price;
     private String pictureFilename;

@@ -3,11 +3,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class User {
     private int userID;
-    private AtomicInteger userCount = new AtomicInteger(1);
+    private static AtomicInteger userCount = new AtomicInteger(1);
     private String username;
     private String password;
     private double balance;
     private ArrayList<Item> items;
+
 
     //Constructor for User class
     public User(String username, String password){
