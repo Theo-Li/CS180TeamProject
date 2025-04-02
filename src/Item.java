@@ -21,7 +21,7 @@ public class Item {
         this.price = price;
         this.pictureFilename = pictureFilename;
         this.sellerID = sellerID;
-        if(itemCount == null) {
+        if (itemCount == null) {
             itemCount = new AtomicInteger(1);
         } else {
             itemID = itemCount.getAndIncrement();

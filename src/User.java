@@ -18,10 +18,10 @@ public class User {
 
 
     //Constructor for User class
-    public User(String username, String password){
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        if(userCount == null) {
+        if (userCount == null) {
             userCount = new AtomicInteger(1);
         } else {
             userID = userCount.getAndIncrement();
@@ -52,7 +52,7 @@ public class User {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items){
+    public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
 
