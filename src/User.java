@@ -28,31 +28,31 @@ public class User {
         }
     }
 
-    public int getUserID() {
+    public synchronized int getUserID() {
         return userID;
     }
 
-    public String getUsername() {
+    public synchronized String getUsername() {
         return username;
     }
 
-    public String getPassword() {
+    public synchronized String getPassword() {
         return password;
     }
 
-    public double getBalance() {
+    public synchronized double getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public synchronized void setBalance(double balance) {
         this.balance = balance;
     }
 
-    public ArrayList<Item> getItems() {
+    public synchronized ArrayList<Item> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items) {
+    public synchronized void setItems(ArrayList<Item> items) {
         this.items = items;
     }
 

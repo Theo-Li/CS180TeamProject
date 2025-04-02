@@ -29,39 +29,39 @@ public class Item {
 
     }
 
-    public int getItemID() {
+    public synchronized int getItemID() {
         return itemID;
     }
 
-    public String getName() {
+    public synchronized String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public synchronized void setName(String name) {
         this.name = name;
     }
 
-    public double getPrice() {
+    public synchronized double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public synchronized void setPrice(double price) {
         this.price = price;
     }
 
-    public String getPictureFilename() {
+    public synchronized String getPictureFilename() {
         return pictureFilename;
     }
 
-    public void setPictureFilename(String pictureFilename) {
+    public synchronized void setPictureFilename(String pictureFilename) {
         this.pictureFilename = pictureFilename;
     }
 
-    public int getSellerID() {
+    public synchronized int getSellerID() {
         return sellerID;
     }
 
-    public void setSellerID(int sellerID) {
+    public synchronized void setSellerID(int sellerID) {
         this.sellerID = sellerID;
     }
 
