@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class Item {
     private int itemID;
-    private static AtomicInteger itemCount = new AtomicInteger(1);
+    private static AtomicInteger itemCount = new AtomicInteger(0);
     private String name;
     private double price;
     private String pictureFilename;
@@ -21,6 +21,11 @@ public class Item {
         this.price = price;
         this.pictureFilename = pictureFilename;
         this.sellerID = sellerID;
+        if(itemCount == null) {
+            itemCount = new AtomicInteger(1);
+        } else {
+            itemID = itemCount.getAndIncrement();
+        }
 
     }
 

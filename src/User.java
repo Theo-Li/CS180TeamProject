@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class User {
     private int userID;
-    private static AtomicInteger userCount = new AtomicInteger(1);
+    private static AtomicInteger userCount = new AtomicInteger(0);
     private String username;
     private String password;
     private double balance;
@@ -21,6 +21,11 @@ public class User {
     public User(String username, String password){
         this.username = username;
         this.password = password;
+        if(userCount == null) {
+            userCount = new AtomicInteger(1);
+        } else {
+            userID = userCount.getAndIncrement();
+        }
     }
 
     public int getUserID() {
