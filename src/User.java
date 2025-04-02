@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ *
+ *
+ * <p>Purdue University -- CS18000 -- Spring 2025</p>
+ *
+ * @author L15 Team 1
+ * @version March 1, 2025
+ */
 public class User {
     private int userID;
     private static AtomicInteger userCount = new AtomicInteger(1);
