@@ -25,3 +25,10 @@ Item categories
 Search by item category
 Seller search
 View previously sold items
+----------------------------------------
+-Class Description: 
+# User Class
+
+# Item Class
+
+# Message Class
