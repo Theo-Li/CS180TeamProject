@@ -1,6 +1,6 @@
 import java.util.concurrent.atomic.AtomicInteger;
 /**
- *
+ * Class that holds information for items
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
@@ -29,39 +29,39 @@ public class Item {
 
     }
 
-    public synchronized int getItemID() {
+    public int getItemID() {
         return itemID;
     }
 
-    public synchronized String getName() {
+    public String getName() {
         return name;
     }
 
-    public synchronized void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public synchronized double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public synchronized void setPrice(double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public synchronized String getPictureFilename() {
+    public String getPictureFilename() {
         return pictureFilename;
     }
 
-    public synchronized void setPictureFilename(String pictureFilename) {
+    public void setPictureFilename(String pictureFilename) {
         this.pictureFilename = pictureFilename;
     }
 
-    public synchronized int getSellerID() {
+    public int getSellerID() {
         return sellerID;
     }
 
-    public synchronized void setSellerID(int sellerID) {
+    public void setSellerID(int sellerID) {
         this.sellerID = sellerID;
     }
 

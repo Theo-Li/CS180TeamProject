@@ -16,27 +16,27 @@ public class Message implements IMessage {
         this.message = message;
     }
 
-    public synchronized int getSenderID() {
+    public int getSenderID() {
         return senderID;
     }
 
-    public synchronized int getReceiverID() {
+    public int getReceiverID() {
         return receiverID;
     }
 
-    public synchronized String getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public synchronized void setSenderID(int senderID) {
+    public void setSenderID(int senderID) {
         this.senderID = senderID;
     }
 
-    public synchronized void setReceiverID(int receiverID) {
+    public void setReceiverID(int receiverID) {
         this.receiverID = receiverID;
     }
 
-    public synchronized void setMessage(String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 }

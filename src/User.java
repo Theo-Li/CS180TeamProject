@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 /**
- *
+ * Class that holds info for users(buyers and sellers)
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
@@ -28,31 +28,31 @@ public class User {
         }
     }
 
-    public synchronized int getUserID() {
+    public int getUserID() {
         return userID;
     }
 
-    public synchronized String getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public synchronized String getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public synchronized double getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public synchronized void setBalance(double balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    public synchronized ArrayList<Item> getItems() {
+    public ArrayList<Item> getItems() {
         return items;
     }
 
-    public synchronized void setItems(ArrayList<Item> items) {
+    public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
 
