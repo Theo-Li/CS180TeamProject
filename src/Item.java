@@ -27,7 +27,7 @@ public class Item {
     private int sellerID;
 
     // Constructor for the Item class that initializes name, price, pictureFilename, and sellerID
-    public Item(String name, double price, String pictureFilename, int sellerID) {
+    public Item(String name, double price, String pictureFilename, int sellerID) throws IllegalArgumentException{
         // Set the name of the item
         this.name = name;
         // Set the price of the item

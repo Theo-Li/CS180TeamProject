@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.concurrent.atomic.AtomicInteger;
 /**
  * The class represents a system user (which could be a buyer or a seller) and holds their basic information.
@@ -63,7 +64,7 @@ public class User {
     }
 
     // Setter method for updating the user's balance
-    public void setBalance(double balance) {
+    public void changeBalance(double balance) throws IllegalArgumentException {
         this.balance = balance;
     }
 
@@ -72,8 +73,22 @@ public class User {
         return items;
     }
 
-    // Setter method for updating the user's list of items
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
+    //Methods that adds an item to the user's list of items
+    public ArrayList<Item> addItem(Item item) {
+        items.add(item);
+
+        return items;
+    }
+
+    //Methods that removes an item from the user's list of items
+    public ArrayList<Item> removeItem(Item item) throws NoSuchElementException {
+        items.remove(item);
+
+        return items;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
