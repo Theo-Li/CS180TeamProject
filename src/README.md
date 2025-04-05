@@ -40,14 +40,6 @@ This phase implements the backend of a multithreaded Marketplace system in Java.
 
 ---
 
-## 💡 Design Highlights  
-- **Modular architecture**: Responsibilities are divided across manager classes.  
-- **Encapsulation**: Internal logic and data structures are hidden behind clean interfaces.  
-- **Interface use**: Interfaces like `IUser`, `IItem`, and `IMessage` standardize functionality.  
-
----
-
-
 
 ## 📁 Files Included  
 - `User.java` – User definition and methods  
