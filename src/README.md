@@ -47,19 +47,11 @@ This phase implements the backend of a multithreaded Marketplace system in Java.
 
 ---
 
-## 🔮 Future Goals  
-- Add seller ratings and item categories.  
-- Enable image upload/display features.  
-- Implement login session management.  
-- Improve UI for better user experience.  
-- Search by category and seller.  
-- Persist data using file I/O across sessions.  
 
----
 
 ## 📁 Files Included  
 - `User.java` – User definition and methods  
-- `UserHandler.java` – User handling logic (to be implemented)  
+- `UserHandler.java` – User handling logic 
 - `UserTest.java` – Unit tests for `User` class using JUnit  
 - `Item.java` – Item structure and fields  
 - `Message.java` / `IMessage.java` – Messaging system  
