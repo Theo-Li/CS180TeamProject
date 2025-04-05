@@ -46,6 +46,11 @@ public class Item {
         }
     }
 
+    //Empty constructor
+    public Item() {
+
+    }
+
     // Getter method for itemID
     public int getItemID() {
         return itemID;
