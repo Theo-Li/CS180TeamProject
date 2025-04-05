@@ -33,6 +33,12 @@ View previously sold items
 
 # Message Class
 
-# UserHandler Class
+# Payment Class
 
-# Marketplace Class
+# PaymentStatus Enum
+
+# UserManager Class
+
+# ItemManager Class 
+
+# PaymentManager Class
