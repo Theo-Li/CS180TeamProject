@@ -11,7 +11,7 @@ public class MessageManager implements IMessageManager {
         loadMessages();
     }
 
-    private synchronized void loadMessages() {
+    public synchronized void loadMessages() {
         messageList.clear();
         try (BufferedReader br = new BufferedReader(new FileReader(messageFile))) {
             String line;
@@ -37,7 +37,7 @@ public class MessageManager implements IMessageManager {
         }
     }
 
-    private synchronized void saveMessages() {
+    public synchronized void saveMessages() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(messageFile))) {
             for (Message msg : messageList) {
                 String line = msg.getSenderID() + "," + msg.getReceiverID() + "," + msg.getMessage();
