@@ -64,7 +64,7 @@ public class User {
     }
 
     // Setter method for updating the user's balance
-    public void changeBalance(double balance) throws IllegalArgumentException {
+    public void setBalance(double balance) throws IllegalArgumentException {
         this.balance = balance;
     }
 
