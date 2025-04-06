@@ -2,7 +2,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
+/**
+ *
+ *
+ * @author Tianzhi Li
+ * @version 2025-04-02
+ */
 public class UserManager implements IUserManager {
     private List<User> userList = new ArrayList<>();
     private final String userFile = "users.txt";
