@@ -1,3 +1,4 @@
+package main;
 /**
  * Enum that represents the payment status
  *

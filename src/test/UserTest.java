@@ -1,5 +1,7 @@
 package test;
 
+import main.*;
+
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;

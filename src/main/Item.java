@@ -1,3 +1,4 @@
+package main;
 import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Class that holds information for items

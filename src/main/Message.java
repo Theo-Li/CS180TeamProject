@@ -1,3 +1,4 @@
+package main;
 /**
  * Message class represents a simple message exchanged between two users.
  * Implements the IMessage interface.
