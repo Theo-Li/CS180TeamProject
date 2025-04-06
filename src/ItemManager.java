@@ -78,6 +78,14 @@ public class ItemManager implements IItemManager {
 
     @Override
     public List<Item> searchItems(String keyword) {
-        return List.of();
+        List<Item> result = new ArrayList<>();
+        for (Item item : itemList) {
+            if (item.getName().contains(keyword)) {
+                result.add(item);
+            }
+
+        }
+        return result;
+
     }
 }
