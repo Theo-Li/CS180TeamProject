@@ -1,7 +1,5 @@
 package test;
-
 import main.*;
-
 import org.junit.Test;
 import org.junit.After;
 import org.junit.Before;
@@ -10,17 +8,19 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.io.*;
 import java.util.ArrayList;
+
+import static org.junit.Assert.*;
+
 /**
  * A framework to run public test cases for the User class.
  *
- * <p>Purdue University -- CS18000 -- Summer 2022</p>
+ * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @author Purdue CS
- * @version June 13, 2022
+ * @authors Lex Borrero and Tianzhi LI (User class)
+ * @version March 1, 2025
  */
 public class UserTest {
     public static void main(String[] args) {
@@ -34,30 +34,30 @@ public class UserTest {
         }
     }
 
-    // Fields for capturing system output/input
+    // Fields for capturing system output/input (if needed)
     private final PrintStream originalOutput = System.out;
     private final InputStream originalSysin = System.in;
     private ByteArrayInputStream testIn;
     private ByteArrayOutputStream testOut;
 
     @Before
-    public void outputStart() {
+    public void setUpStreams() {
         testOut = new ByteArrayOutputStream();
         System.setOut(new PrintStream(testOut));
     }
 
     @After
-    public void restoreInputAndOutput() {
-        System.setIn(originalSysin);
+    public void restoreStreams() {
         System.setOut(originalOutput);
+        System.setIn(originalSysin);
     }
 
     private String getOutput() {
         return testOut.toString();
     }
 
-    private void receiveInput(String str) {
-        testIn = new ByteArrayInputStream(str.getBytes());
+    private void setInput(String input) {
+        testIn = new ByteArrayInputStream(input.getBytes());
         System.setIn(testIn);
     }
 
@@ -65,72 +65,79 @@ public class UserTest {
      * Test that the User class is declared correctly.
      */
     @Test(timeout = 1000)
-    public void userClassDeclarationTest() {
+    public void testUserClassDeclaration() {
         Class<?> clazz = User.class;
         int modifiers = clazz.getModifiers();
         Class<?> superclass = clazz.getSuperclass();
         Class<?>[] interfaces = clazz.getInterfaces();
 
-        Assert.assertTrue("Ensure that `User` is public!", Modifier.isPublic(modifiers));
-        Assert.assertFalse("Ensure that `User` is NOT abstract!", Modifier.isAbstract(modifiers));
-        Assert.assertEquals("Ensure that `User` extends `Object`!", Object.class, superclass);
-        Assert.assertEquals("Ensure that `User` implements no interfaces!", 0, interfaces.length);
+        Assert.assertTrue("Ensure that User is public", Modifier.isPublic(modifiers));
+        Assert.assertFalse("Ensure that User is not abstract", Modifier.isAbstract(modifiers));
+        Assert.assertEquals("Ensure that User extends Object", Object.class, superclass);
+        // User implements IUser, so there should be exactly one interface.
+        Assert.assertEquals("Ensure that User implements exactly one interface", 1, interfaces.length);
+        Assert.assertEquals("Ensure that User implements IUser", IUser.class, interfaces[0]);
     }
 
     /**
-     * Test the basic fields and methods of User.
+     * Test basic field values and methods of User.
      */
     @Test(timeout = 1000)
     public void testUserFieldsAndMethods() {
         User user = new User("testUser", "testPass");
 
-        Assert.assertEquals("Ensure getUsername() returns the correct username", "testUser", user.getUsername());
-        Assert.assertEquals("Ensure getPassword() returns the correct password", "testPass", user.getPassword());
-        Assert.assertEquals("Ensure initial balance is 0.0", 0.0, user.getBalance(), 0.001);
+        Assert.assertEquals("getUsername() returns correct username", "testUser", user.getUsername());
+        Assert.assertEquals("getPassword() returns correct password", "testPass", user.getPassword());
+        Assert.assertEquals("Initial balance should be 0.0", 0.0, user.getBalance(), 0.001);
 
-        user.setBalance(50.0);
-        Assert.assertEquals("Ensure changeBalance() updates the balance correctly", 50.0, user.getBalance(), 0.001);
+        user.setBalance(100.0);
+        Assert.assertEquals("setBalance() updates balance correctly", 100.0, user.getBalance(), 0.001);
 
-        Assert.assertTrue("Ensure getUserID() returns a non-negative value", user.getUserID() >= 0);
+        Assert.assertTrue("getUserID() returns non-negative value", user.getUserID() >= 0);
 
         String userStr = user.toString();
-        Assert.assertNotNull("Ensure toString() does not return null", userStr);
-        Assert.assertTrue("Ensure toString() contains the class name `User@`", userStr.contains("User@"));
+        Assert.assertNotNull("toString() should not return null", userStr);
+        Assert.assertTrue("toString() should contain the class name 'User@'", userStr.contains("User@"));
     }
 
     /**
-     * Helper method to initialize the private 'items' field in User.
+     * Test that user IDs increment sequentially.
      */
-    private void initializeItems(User user) throws Exception {
-        Field itemsField = User.class.getDeclaredField("items");
-        itemsField.setAccessible(true);
-        itemsField.set(user, new ArrayList<>());
+    @Test(timeout = 1000)
+    public void testUserIdIncrement() {
+        User user1 = new User("user1", "pass1");
+        User user2 = new User("user2", "pass2");
+        Assert.assertEquals("User IDs should increment sequentially", user1.getUserID() + 1, user2.getUserID());
     }
 
     /**
      * Test the items-related methods in User.
      * <p>
      * This test assumes that an appropriate definition for the Item type exists.
-     * An anonymous instance of Item is created to test addItem() and removeItem().
+     * An anonymous instance of Item is used to test addItem() and removeItem().
      */
     @Test(timeout = 1000)
-    public void testItemsMethods() throws Exception {
+    public void testItemsMethods() {
         User user = new User("itemUser", "pass");
 
-        // Initially, items should be null because it is not initialized in the constructor.
-        Assert.assertNull("Initially, getItems() should return null", user.getItems());
+        // Initially, items should be null.
+        Assert.assertNull("getItems() should return null initially", user.getItems());
 
-        // Initialize the items list via reflection.
-        initializeItems(user);
-        Assert.assertNotNull("After initialization, getItems() should not return null", user.getItems());
+        // Initialize items list using setItems.
+        user.setItems(new ArrayList<>());
+        Assert.assertNotNull("After setItems(), getItems() should not return null", user.getItems());
 
         // Create an anonymous instance of Item.
-        Item item1 = new Item() {};
-        ArrayList<Item> itemsAfterAdd = user.addItem(item1);
-        Assert.assertTrue("After addItem(), the items list should contain the added item", itemsAfterAdd.contains(item1));
+        Item item = new Item() {};
+        // Test addItem().
+        user.addItem(item);
+        Assert.assertTrue("After addItem(), getItems() should contain the added item", user.getItems().contains(item));
 
-        ArrayList<Item> itemsAfterRemove = user.removeItem(item1);
-        Assert.assertFalse("After removeItem(), the items list should not contain the removed item", itemsAfterRemove.contains(item1));
+        // Test removeItem().
+        boolean removed = user.removeItem(item);
+        Assert.assertTrue("removeItem() should return true", removed);
+        Assert.assertFalse("After removeItem(), getItems() should not contain the removed item", user.getItems().contains(item));
     }
 }
+
 

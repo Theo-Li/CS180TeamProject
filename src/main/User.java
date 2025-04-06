@@ -1,6 +1,6 @@
 package main;
-import java.util.ArrayList;
-import java.util.NoSuchElementException;
+
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 /**
  * The class represents a system user (which could be a buyer or a seller) and holds their basic information.
@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @authors Lex Borrero and Tianzhi LI
  * @version March 1, 2025
  */
-public class User {
+public class User implements IUser{
     // Unique identifier for each user
     private int userID;
 
@@ -27,7 +27,7 @@ public class User {
     private double balance;
 
     // List of items associated with the user (e.g., items for sale or owned items)
-    private ArrayList<Item> items;
+    private List<Item> items;
 
     // Constructor for the User class that initializes username and password
     public User(String username, String password) {
@@ -45,47 +45,51 @@ public class User {
     }
 
     // Getter method for userID
-    public int getUserID() {
+    public synchronized int getUserID() {
         return userID;
     }
 
     // Getter method for username
-    public String getUsername() {
+    public synchronized String getUsername() {
         return username;
     }
 
     // Getter method for password
-    public String getPassword() {
+    public synchronized String getPassword() {
         return password;
     }
 
     // Getter method for the user's balance
-    public double getBalance() {
+    public synchronized double getBalance() {
         return balance;
     }
 
     // Setter method for updating the user's balance
-    public void setBalance(double balance) throws IllegalArgumentException {
+    public synchronized void setBalance(double balance) throws IllegalArgumentException {
         this.balance = balance;
     }
 
     // Getter method for the user's list of items
-    public ArrayList<Item> getItems() {
+    public synchronized List<Item> getItems() {
         return items;
+    }
+
+    @Override
+    public void setItems(List<Item> items) {
+        this.items = items;
+
     }
 
     //Methods that adds an item to the user's list of items
-    public ArrayList<Item> addItem(Item item) {
+    public void addItem(Item item) {
         items.add(item);
-
-        return items;
     }
 
     //Methods that removes an item from the user's list of items
-    public ArrayList<Item> removeItem(Item item) throws NoSuchElementException {
+    public boolean removeItem(Item item) {
         items.remove(item);
+        return true;
 
-        return items;
     }
 
     @Override
