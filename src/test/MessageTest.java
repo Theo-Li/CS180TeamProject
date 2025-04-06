@@ -8,10 +8,8 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.io.*;
-import java.util.ArrayList;
 
 /**
  * A framework to run public test cases for the Message class.
@@ -96,3 +94,4 @@ public class MessageTest {
         Assert.assertEquals("Ensure setReceiverID() updates receiverID correctly", 2, message.getReceiverID());
         Assert.assertEquals("Ensure setMessage() updates message correctly", "test message 2", message.getMessage());
     }
+}
