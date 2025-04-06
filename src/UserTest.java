@@ -84,7 +84,7 @@ public class UserTest {
         Assert.assertEquals("Ensure getPassword() returns the correct password", "testPass", user.getPassword());
         Assert.assertEquals("Ensure initial balance is 0.0", 0.0, user.getBalance(), 0.001);
 
-        user.changeBalance(50.0);
+        user.setBalance(50.0);
         Assert.assertEquals("Ensure changeBalance() updates the balance correctly", 50.0, user.getBalance(), 0.001);
 
         Assert.assertTrue("Ensure getUserID() returns a non-negative value", user.getUserID() >= 0);

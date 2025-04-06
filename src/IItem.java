@@ -1,3 +1,10 @@
+/**
+ *
+ *
+ *
+ * @author Tianzhi Li
+ * @version 2025-04-02
+ */
 public interface IItem {
     int getItemID();
     void setItemID(int itemID);

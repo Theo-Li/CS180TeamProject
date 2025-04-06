@@ -1,3 +1,10 @@
+/**
+ *
+ *
+ *
+ * @author Tianzhi Li
+ * @version 2025-04-02
+ */
 public interface IMessage {
     void setSenderID(int senderID);
     int getSenderID();
