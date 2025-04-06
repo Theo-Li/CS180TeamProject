@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Lex Borrero and Tianzhi Li
  * @version March 1, 2025
  */
-public class Item {
+public class Item implements IItem {
     // Unique identifier for each item
     private int itemID;
 
@@ -83,12 +83,12 @@ public class Item {
     }
 
     // Getter method for the item's picture filename
-    public String getPictureFilename() {
+    public String getPictureFileName() {
         return pictureFilename;
     }
 
     // Setter method for the item's picture filename
-    public void setPictureFilename(String pictureFilename) {
+    public void setPictureFileName(String pictureFilename) {
         this.pictureFilename = pictureFilename;
     }
 

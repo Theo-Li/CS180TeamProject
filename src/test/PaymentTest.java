@@ -84,16 +84,15 @@ public class PaymentTest {
      */
     @Test(timeout = 1000)
     public void testPaymentFieldsAndMethods() {
-        LocalDateTime testBeforeTimestamp = LocalDateTime.now();
         Payment payment = new Payment(1, 1, 10.00, PaymentStatus.COMPLETED);
         LocalDateTime testAfterTimestamp = LocalDateTime.now();
 
-        Assert.assertTrue("getPaymentID() returns negative value", payment.getPaymentID() >= 0);
+        Assert.assertTrue("getPaymentID() returns invalid value", payment.getPaymentID() >= 0);
 
         Assert.assertEquals("getBuyerID() returns incorrect buyerID", 1, payment.getBuyerID());
         Assert.assertEquals("getSellerID() returns incorrect sellerID", 1, payment.getSellerID());
         Assert.assertEquals("getAmount() returns incorrect amount", 10.0, payment.getAmount(), 0.001);
-        Assert.assertTrue("getTimestamp() should be within specified range", payment.getTimestamp().isAfter(testBeforeTimestamp) && payment.getTimestamp().isAfter(testAfterTimestamp));
+        Assert.assertEquals("getTimestamp() returns incorrect timestamp", payment.getTimestamp(), testAfterTimestamp);
         Assert.assertEquals("getStatus() returns incorrect paymentStatus", PaymentStatus.COMPLETED, payment.getStatus());
         
         payment.setStatus(PaymentStatus.FAILED);
@@ -104,7 +103,7 @@ public class PaymentTest {
      * Test that payment IDs increment sequentially.
      */
     @Test(timeout = 1000)
-    public void testUserIdIncrement() {
+    public void testPaymentIdIncrement() {
         Payment payment1 = new Payment(1, 1, 1.00, PaymentStatus.PENDING);
         Payment payment2 = new Payment(3, 3, 2.00, PaymentStatus.PENDING);
         Assert.assertEquals("Payment IDs should increment sequentially", payment1.getPaymentID() + 1, payment2.getPaymentID());
