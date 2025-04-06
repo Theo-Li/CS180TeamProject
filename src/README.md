@@ -45,7 +45,7 @@ This phase implements the backend of a multithreaded Marketplace system in Java,
 
 - `User.java` – User definition and methods  
 - `UserHandler.java` – User handling logic  
-- `UserTest.java` – Unit tests for `User` class using JUnit  
+- `test.UserTest.java` – Unit tests for `User` class using JUnit  
 - `Item.java` – Item structure and fields  
 - `Message.java` / `IMessage.java` – Messaging system  
 - `Marketplace.java` – Entry point, main backend integration  
@@ -61,7 +61,7 @@ Tests cover:
 - Messaging functionality  
 - Payment processing and balance adjustment  
 - Thread safety with simulated concurrent access  
-- Unit testing implemented via **JUnit** in `UserTest.java`  
+- Unit testing implemented via **JUnit** in `test.UserTest.java`  
 
 ---
 
