@@ -24,13 +24,12 @@ public class ItemManager implements IItemManager {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length >= 4) {
+                if (parts.length >= 5) {
                     String name = parts[1].trim();
-                    double price = Double.parseDouble(parts[2].trim();
+                    double price = Double.parseDouble(parts[2].trim());
                     String pictureFilename = parts[3].trim();
                     int sellerID = Integer.parseInt(parts[4].trim());
-                    Item item = new Item(String name, double price, String pictureFilename, int sellerID);
-                    item.setPrice(price);
+                    Item item = new Item(name, price, pictureFilename,sellerID);
                     itemList.add(item);
                 }
             }
@@ -44,7 +43,8 @@ public class ItemManager implements IItemManager {
     public synchronized void saveItems() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(itemFile))) {
             for (Item item : itemList) {
-                String line = item.getSellerID() + "," + item.getName() + "," + item.getPictureFilename() + "," + item.getPrice();
+                String line = item.getItemID() + "," + item.getName() + "," + item.getPrice() + ","
+                        + item.getPictureFilename() + "," + item.getSellerID();
                 bw.write(line);
                 bw.newLine();
             }
@@ -55,16 +55,11 @@ public class ItemManager implements IItemManager {
     }
 
     @Override
-    public boolean createItem(User seller, String name, double price, String pictureFilename) {
-        for (Item i : itemList) {
-            if (i.getItemID().equals(item.getItemID())) {
-                return false;
-            }
-        }
-        itemList.add(item);
+    public synchronized boolean createItem(User seller, String name, double price, String pictureFilename) {
+        Item newItem = new Item(name, price, pictureFilename, seller.getUserID());
+        itemList.add(newItem);
         saveItems();
         return true;
-
     }
 
     @Override
@@ -72,7 +67,7 @@ public class ItemManager implements IItemManager {
         Iterator<Item> iterator = itemList.iterator();
         while (iterator.hasNext()) {
             Item item = iterator.next();
-            if (item.getItemID() == itemID) {
+            if (item.getItemID() == itemID && item.getSellerID() == seller.getUserID()) {
                 iterator.remove();
                 saveItems();
                 return true;

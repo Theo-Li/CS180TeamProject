@@ -56,6 +56,11 @@ public class Item {
         return itemID;
     }
 
+    //Setter method for itermID
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
+    }
+
     // Getter method for the item's name
     public String getName() {
         return name;

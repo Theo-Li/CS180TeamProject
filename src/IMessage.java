@@ -1,8 +1,10 @@
 public interface IMessage {
-    public void setSenderID(int senderID);
-    public int getReceiverID();
-    public void setReceiverID(int receiverID);
-    public String getMessage();
-    public void setMessage(String message);
+    void setSenderID(int senderID);
+    int getSenderID();
+    void setReceiverID(int receiverID);
+    int getReceiverID();
+    String getMessage();
+    void setMessage(String message);
+
 
 }
