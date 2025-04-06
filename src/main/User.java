@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @authors Lex Borrero and Tianzhi LI
+ * @author Lex Borrero and Tianzhi LI
  * @version March 1, 2025
  */
 public class User implements IUser{
