@@ -76,6 +76,10 @@ All essential components are tested using **JUnit**, guaranteeing correctness an
 
 ### ✅ Test Coverage Includes:
 - `UserTest.java` – Account creation, login, and balance updates  
+- `UserManagerTest.java` – User retrieval and validation logic  
 - `ItemTest.java` – Adding and removing items  
+- `ItemManagerTest.java` – Item management operations  
 - `MessageTest.java` – Sending and receiving messages  
-- `PaymentTest.java` – Simulated **concurrent access** while processing payments, balance updates, and transaction status
+- `MessageManagerTest.java` – Message tracking and retrieval  
+- `PaymentTest.java` – Simulated **concurrent access** while processing payments, balance updates, and transaction status  
+- `PaymentManagerTest.java` – Payment processing and transaction updates
