@@ -43,9 +43,6 @@ This phase implements the backend of a multithreaded Marketplace system in Java,
 
 ## 📁 Files Included
 
-### 📂 Main Classes
-- `main/Marketplace.java` – 🖥️ Backend integration and project entry point
-
 ### 👥 User Management
 - `User.java` – Definition of the user object and fundamental logic  
 - `UserManager.java` – User management logic  
