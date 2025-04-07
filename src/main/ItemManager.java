@@ -26,7 +26,7 @@ public class ItemManager implements IItemManager {
 
     // A list to store all items managed by this class.
     // Each element is an instance of the Item class.
-    private List<Item> itemList;
+    private List<Item> itemList = new ArrayList<>();
 
     // The file name where item data is persisted.
     // This file is used to load and save items.
@@ -210,11 +210,11 @@ public class ItemManager implements IItemManager {
      * @param imagePath The path to the image file.
      * @return A Base64 encoded string representing the image, or null if an error occurs.
      */
-    public  String convertImageToBase64(String imagePath) {
+    public byte[] convertImageToBytes(String imagePath) {
         try {
             File file = new File(imagePath);
             byte[] fileContent = Files.readAllBytes(file.toPath());
-            return Base64.getEncoder().encodeToString(fileContent);
+            return fileContent;
         } catch (IOException e) {
             System.out.println("Error converting image to Base64: " + e.getMessage());
             return null;

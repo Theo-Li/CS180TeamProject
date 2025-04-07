@@ -1,0 +1,2 @@
+1,TestItem1,10.0,test1.jpg,100
+2,TestItem2,20.0,test2.jpg,101

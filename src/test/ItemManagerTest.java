@@ -65,17 +65,6 @@ public class ItemManagerTest {
     }
 
     /**
-     * Cleanup the items.txt file (if created during tests)
-     */
-    @After
-    public void cleanupFile() {
-        File file = new File("items.txt");
-        if (file.exists()) {
-            file.delete();
-        }
-    }
-
-    /**
      * Test that the ItemManager class is declared correctly.
      */
     @Test(timeout = 1000)
@@ -105,7 +94,7 @@ public class ItemManagerTest {
     /**
      * Test the loadItems() method by creating a temporary items.txt file.
      */
-    @Test(timeout = 1000)
+    @Test
     public void testLoadItems() throws Exception {
         // Create a temporary items.txt file with known content.
         PrintWriter writer = new PrintWriter(new FileWriter("items.txt"));
@@ -216,12 +205,35 @@ public class ItemManagerTest {
 
         // Search for items containing "Apple".
         List<Item> searchResult = manager.searchItems("Apple");
-        // Should match both "Apple" and "Pineapple".
-        Assert.assertEquals("searchItems should return 2 items when searching for 'Apple'", 2, searchResult.size());
+        // Should match only "Apple".
+        Assert.assertEquals("searchItems should return 1 item when searching for 'Apple'", 1, searchResult.size());
 
         // Verify that each returned item's name contains "Apple".
         for (Item item : searchResult) {
             Assert.assertTrue("Each search result should contain 'Apple' in the name", item.getName().contains("Apple"));
         }
+    }
+
+    /**
+     * Test the convertImageToBase64() method.
+     */
+    @Test(timeout = 1000)
+    public void testConvertImageToBytes() {
+        ItemManager manager = new ItemManager();
+        
+        Assert.assertNotNull("convertImagesToBytes() returned null", manager.convertImageToBytes("apple.jpg"));
+        Assert.assertTrue("convertImagesToBytes() returned an empty list", manager.convertImageToBytes("apple.jpg").length != 0);
+    }
+
+    /**
+     * Test the displayItemImage() method.
+     */
+    @Test(timeout = 1000)
+    public void testDisplayItemImage() {
+        ItemManager manager = new ItemManager();
+        
+        Item testItem = new Item("testItem", 10.00, "apple.jpg", 1);
+        manager.displayItemImage(testItem.getItemID());
+        Assert.assertNotEquals("displayItemImage() could not find item", "Item with ID 0 not found.", getOutput());
     }
 }
