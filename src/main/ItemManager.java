@@ -1,15 +1,21 @@
 package main;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * The ItemManager class handles operations for managing a collection of items.
  * It implements the IItemManager interface and provides functionalities to load,
  * save, create, delete, and search for items.
  *
- * Author: Lex Borrero
+ * Author: Lex Borrero and Tianzhi Li
  * Version: 2025-04-02
  */
 public class ItemManager implements IItemManager {
@@ -95,7 +101,7 @@ public class ItemManager implements IItemManager {
             for (Item item : itemList) {
                 // Format the item's details as: itemID,name,price,pictureFilename,sellerID.
                 String line = item.getItemID() + "," + item.getName() + "," + item.getPrice() + ","
-                        + item.getPictureFilename() + "," + item.getSellerID();
+                        + item.getPictureFileName() + "," + item.getSellerID();
                 // Write the formatted line to the file.
                 bw.write(line);
                 // Write a newline character after each item.
@@ -191,5 +197,34 @@ public class ItemManager implements IItemManager {
         }
         // Return the list of found items.
         return result;
+    }
+
+
+    /**
+     * New feature: Display the image of an item.
+     * The method searches for the item with the given itemID, then uses ImageIO
+     * to read the image file and displays it in a JFrame.
+     *
+     * @param itemID The unique identifier of the item whose image to display.
+     */
+    public synchronized void displayItemImage(int itemID) {
+        for (Item item : itemList) {
+            if (item.getItemID() == itemID) {
+                String imagePath = item.getPictureFileName();
+                try {
+                    BufferedImage img = ImageIO.read(new File(imagePath));
+                    JFrame frame = new JFrame("Item Image: " + item.getName());
+                    frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    frame.setSize(400, 400);
+                    JLabel label = new JLabel(new ImageIcon(img));
+                    frame.add(label);
+                    frame.setVisible(true);
+                } catch (IOException ex) {
+                    System.out.println("Error loading image: " + ex.getMessage());
+                }
+                return;
+            }
+        }
+        System.out.println("Item with ID " + itemID + " not found.");
     }
 }
