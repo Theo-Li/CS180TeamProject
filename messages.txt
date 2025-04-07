@@ -1,0 +1,6 @@
+0,1,test message 1
+0,1,test message 2
+1,0,test message 3
+0,1,test message 4
+1,0,test message 5\r\n
+1,2,test message 6

@@ -15,16 +15,16 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 /**
- * A framework to run public test cases for the User class.
+ * A framework to run public test cases for the UserManager class.
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @authors Lex Borrero and Tianzhi LI (User class)
- * @version March 1, 2025
+ * @authors Fang Rui Shen
+ * @version April 6, 2025
  */
-public class UserTest {
+public class UserManagerTest {
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(UserTest.class);
+        Result result = JUnitCore.runClasses(UserManagerTest.class);
         if (result.wasSuccessful()) {
             System.out.println("Excellent - Test ran successfully");
         } else {
@@ -62,7 +62,7 @@ public class UserTest {
     }
 
     /**
-     * Test that the User class is declared correctly.
+     * Test that the UserManager class is declared correctly.
      */
     @Test(timeout = 1000)
     public void testUserClassDeclaration() {
@@ -71,19 +71,19 @@ public class UserTest {
         Class<?> superclass = clazz.getSuperclass();
         Class<?>[] interfaces = clazz.getInterfaces();
 
-        Assert.assertTrue("Ensure that User is public", Modifier.isPublic(modifiers));
-        Assert.assertFalse("Ensure that User is not abstract", Modifier.isAbstract(modifiers));
-        Assert.assertEquals("Ensure that User extends Object", Object.class, superclass);
-        // User implements IUser, so there should be exactly one interface.
-        Assert.assertEquals("Ensure that User implements exactly one interface", 1, interfaces.length);
-        Assert.assertEquals("Ensure that User implements IUser", IUser.class, interfaces[0]);
+        Assert.assertTrue("Ensure that UserManager is public", Modifier.isPublic(modifiers));
+        Assert.assertFalse("Ensure that UserManager is not abstract", Modifier.isAbstract(modifiers));
+        Assert.assertEquals("Ensure that UserManager extends Object", Object.class, superclass);
+        // User implements IUserManager, so there should be exactly one interface.
+        Assert.assertEquals("Ensure that UserManager implements exactly one interface", 1, interfaces.length);
+        Assert.assertEquals("Ensure that UserManager implements IUserManager", IUserManager.class, interfaces[0]);
     }
 
     /**
-     * Test basic field values and methods of User.
+     * Test basic field values and methods of UserManager.
      */
     @Test(timeout = 1000)
-    public void testUserFieldsAndMethods() {
+    public void testUserManagerFieldsAndMethods() {
         User user = new User("testUser", "testPass");
 
         Assert.assertEquals("getUsername() returns incorrect username", "testUser", user.getUsername());
