@@ -4,11 +4,15 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Base64;
+import java.io.ByteArrayInputStream;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.io.File;
+import java.nio.file.Files;
 
 /**
  * The ItemManager class handles operations for managing a collection of items.
@@ -201,18 +205,41 @@ public class ItemManager implements IItemManager {
 
 
     /**
-     * New feature: Display the image of an item.
-     * The method searches for the item with the given itemID, then uses ImageIO
-     * to read the image file and displays it in a JFrame.
+     * Converts the image located at the given path into a Base64 encoded string.
      *
-     * @param itemID The unique identifier of the item whose image to display.
+     * @param imagePath The path to the image file.
+     * @return A Base64 encoded string representing the image, or null if an error occurs.
+     */
+    public  String convertImageToBase64(String imagePath) {
+        try {
+            File file = new File(imagePath);
+            byte[] fileContent = Files.readAllBytes(file.toPath());
+            return Base64.getEncoder().encodeToString(fileContent);
+        } catch (IOException e) {
+            System.out.println("Error converting image to Base64: " + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Displays the original image of an item.
+     * The method searches for the item by its ID, then decodes the Base64-encoded image data,
+     * and displays the image in a JFrame.
+     *
+     * @param itemID The unique identifier of the item whose image is to be displayed.
      */
     public synchronized void displayItemImage(int itemID) {
         for (Item item : itemList) {
             if (item.getItemID() == itemID) {
-                String imagePath = item.getPictureFileName();
+                // Retrieve the Base64 encoded image data from the item.
+                String imageData = item.getPictureFileName();
                 try {
-                    BufferedImage img = ImageIO.read(new File(imagePath));
+                    // Decode the Base64 string to get the original image bytes.
+                    byte[] imageBytes = Base64.getDecoder().decode(imageData);
+                    ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
+                    BufferedImage img = ImageIO.read(bis);
+
+                    // Display the image in a JFrame.
                     JFrame frame = new JFrame("Item Image: " + item.getName());
                     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     frame.setSize(400, 400);

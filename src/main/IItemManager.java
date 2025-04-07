@@ -14,4 +14,5 @@ public interface IItemManager {
      boolean deleteItem(int itemID, User seller);
      List<Item> searchItems(String keyword);
      void displayItemImage(int itemID);
+     String convertImageToBase64(String imagePath);
 }
