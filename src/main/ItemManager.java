@@ -95,7 +95,7 @@ public class ItemManager implements IItemManager {
             for (Item item : itemList) {
                 // Format the item's details as: itemID,name,price,pictureFilename,sellerID.
                 String line = item.getItemID() + "," + item.getName() + "," + item.getPrice() + ","
-                        + item.getPictureFilename() + "," + item.getSellerID();
+                        + item.getPictureFileName() + "," + item.getSellerID();
                 // Write the formatted line to the file.
                 bw.write(line);
                 // Write a newline character after each item.
