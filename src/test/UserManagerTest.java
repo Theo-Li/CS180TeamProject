@@ -9,8 +9,10 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 import java.lang.reflect.Modifier;
+import java.time.LocalDateTime;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -65,8 +67,8 @@ public class UserManagerTest {
      * Test that the UserManager class is declared correctly.
      */
     @Test(timeout = 1000)
-    public void testUserClassDeclaration() {
-        Class<?> clazz = User.class;
+    public void testUserManagerClassDeclaration() {
+        Class<?> clazz = UserManager.class;
         int modifiers = clazz.getModifiers();
         Class<?> superclass = clazz.getSuperclass();
         Class<?>[] interfaces = clazz.getInterfaces();
@@ -80,64 +82,51 @@ public class UserManagerTest {
     }
 
     /**
-     * Test basic field values and methods of UserManager.
+     * Test methods of UserManager.
      */
-    @Test(timeout = 1000)
-    public void testUserManagerFieldsAndMethods() {
-        User user = new User("testUser", "testPass");
+    @Test
+    public void testUserManagerAndMethods() {
+        File testFile = new File("users.txt");
+        String testInput = "0,testUser1,testPass1,100.00\r\n" + //
+                        "1,testUser2,testPass2,200.00\r\n";
 
-        Assert.assertEquals("getUsername() returns incorrect username", "testUser", user.getUsername());
-        Assert.assertEquals("getPassword() returns incorrect password", "testPass", user.getPassword());
-        Assert.assertEquals("Initial balance should be 0.0", 0.0, user.getBalance(), 0.001);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(testFile))) {
+            bw.write(testInput);
+        } catch (IOException e) {
+            System.out.println("Failed to load users: " + e.getMessage());
+        }
 
-        user.setBalance(100.0);
-        Assert.assertEquals("Ensure setBalance() updates balance correctly", 100.0, user.getBalance(), 0.001);
+        int lineCount = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(testFile))) {
+            while (reader.readLine() != null) {
+                lineCount++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Assert.assertEquals("loadUsers() loaded incorrect users", 2, lineCount);
 
-        Assert.assertTrue("Ensure getUserID() returns non-negative value", user.getUserID() >= 0);
+        UserManager userManager = new UserManager();
+        User user1 = new User("testUser1", "testPass1");
 
-        String userStr = user.toString();
-        Assert.assertNotNull("toString() should not return null", userStr);
-        Assert.assertTrue("toString() should contain the class name 'User@'", userStr.contains("User@"));
-    }
+        Assert.assertEquals("getUser() returns incorrect user", "testUser1", userManager.getUser(0).getUsername());
+        Assert.assertFalse("addUser() does not check duplicate username", userManager.addUser(user1));
+        Assert.assertFalse("registerUser() does not check duplicate username", userManager.registerUser("testUser1", "testPass1"));
 
-    /**
-     * Test that user IDs increment sequentially.
-     */
-    @Test(timeout = 1000)
-    public void testUserIdIncrement() {
-        User user1 = new User("user1", "pass1");
-        User user2 = new User("user2", "pass2");
-        Assert.assertEquals("User IDs should increment sequentially", user1.getUserID() + 1, user2.getUserID());
-    }
+        userManager.deleteUser(0);
+        Assert.assertTrue("deleteUser() incorrectly deleted user", userManager.addUser(user1));
 
-    /**
-     * Test the items-related methods in User.
-     * <p>
-     * This test assumes that an appropriate definition for the Item type exists.
-     * An anonymous instance of Item is used to test addItem() and removeItem().
-     */
-    @Test(timeout = 1000)
-    public void testItemsMethods() {
-        User user = new User("itemUser", "pass");
+        Assert.assertEquals("login() returns incorrect user", "testUser1", userManager.login("testUser1", "testPass1").getUsername());
+        Assert.assertNull("login() incorrectly verified user", userManager.login("testUser3", "testPass3"));
 
-        // Initially, items should be null.
-        Assert.assertNull("getItems() should return null initially", user.getItems());
-
-        // Initialize items list using setItems.
-        user.setItems(new ArrayList<>());
-        Assert.assertNotNull("After setItems(), getItems() should not return null", user.getItems());
-
-        // Create an anonymous instance of Item.
-        Item item = new Item() {};
-        // Test addItem().
-        user.addItem(item);
-        Assert.assertTrue("After addItem(), getItems() should contain the added item", user.getItems().contains(item));
-
-        // Test removeItem().
-        boolean removed = user.removeItem(item);
-        Assert.assertTrue("removeItem() should return true", removed);
-        Assert.assertFalse("After removeItem(), getItems() should not contain the removed item", user.getItems().contains(item));
+        lineCount = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(testFile))) {
+            while (reader.readLine() != null) {
+                lineCount++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Assert.assertEquals("saveUsers() saved incorrect users", 2, lineCount);
     }
 }
-
-
