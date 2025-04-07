@@ -10,58 +10,75 @@ This phase implements the backend of a multithreaded Marketplace system in Java,
 
 ## ✅ Core Functionality
 
-### 1. User Accounts
-- Register with a unique username and password  
-- Atomic counters assign each user a unique `userID`  
-- Balances are tracked and adjustable  
-- The same `User` class handles buyers and sellers  
+### 1. 👤 User Accounts
+- Users register with a **unique username and password**
+- Each user receives a **unique userID** via `AtomicInteger`
+- Users maintain and update their **account balances**
+- The `User` class supports both buyers and sellers
 
-### 2. Item Listings
-- Every item has a `sellerID`, `name`, `price`, and `pictureFilename`  
-- Atomic counters assign unique `itemID`s  
-- Users can add or remove items from their listings  
+### 2. 📦 Item Listings
+- Each `Item` includes: `sellerID`, `name`, `price`, `pictureFilename`
+- Each item gets a **unique itemID**
+- Users can **add/remove** items from their listings via `ItemManager`
 
-### 3. Messaging System
-- Buyers can send messages to sellers  
-- Each message includes `senderID`, `receiverID`, and message text  
-- `MessageManager` handles message storage and retrieval  
+### 3. 💬 Messaging System
+- Buyers can message sellers using `MessageManager`
+- Each `Message` includes: `senderID`, `receiverID`, `text`
+- Thread-safe message **storage and retrieval**
 
-### 4. Payment Processing
-- Payment records include `buyerID`, `sellerID`, `amount`, `timestamp`, and `status`  
-- `PaymentManager` updates user balances and monitors transaction states  
-- `PaymentStatus` enum tracks `PENDING`, `COMPLETED`, and `FAILED` transactions  
+### 4. 💳 Payment Processing
+- Payment records store: `buyerID`, `sellerID`, `amount`, `timestamp`, `status`
+- `PaymentManager` handles **balance updates** and **transaction status**
+- `PaymentStatus` enum defines: `PENDING`, `COMPLETED`, `FAILED`
 
 ---
 
 ## 🧵 Thread Safety & Concurrency
-
-- `AtomicInteger` generates unique IDs (`userID`, `itemID`, `paymentID`)  
-- All manager classes (e.g., `UserManager`, `ItemManager`) use `synchronized` methods  
-- Designed for multi-client environments connecting through one server  
+- `AtomicInteger` is used to generate unique IDs: `userID`, `itemID`, `paymentID`
+- All manager classes (`UserManager`, `ItemManager`, etc.) use **synchronized methods**
+- Supports **multi-client concurrency** through a centralized server model
 
 ---
 
 ## 📁 Files Included
 
-- `User.java` – User definition and methods  
-- `UserHandler.java` – User handling logic  
-- `test.UserTest.java` – Unit tests for `User` class using JUnit  
-- `Item.java` – Item structure and fields  
-- `Message.java` / `IMessage.java` – Messaging system  
-- `Marketplace.java` – Entry point, main backend integration  
-- `README.md` – This documentation  
+### 📂 Main Classes
+- `main/Marketplace.java` – Project entry point and backend integration
+
+### 👥 User Management
+- `User.java` – User object definition and core logic
+- `IUser.java` – User interface specification
+- `UserManager.java` – Logic for managing users
+- `IUserManager.java` – Interface for user management
+
+### 📦 Item Management
+- `Item.java` – Item object and fields
+- `IItem.java` – Interface for items
+- `ItemManager.java` – Manages item listings
+- `IItemManager.java` – Item management interface
+
+### 💬 Messaging System
+- `Message.java` – Message structure
+- `IMessage.java` – Message interface
+- `MessageManager.java` – Handles messaging operations
+- `IMessageManager.java` – Messaging system interface
+
+### 💳 Payments
+- `Payment.java` – Payment record structure
+- `IPayment.java` – Interface for payments
+- `PaymentManager.java` – Manages transactions and balances
+- `IPaymentManager.java` – Payment manager interface
+- `PaymentStatus.java` – Enum for transaction state
 
 ---
 
 ## 🧪 Testing Methodology
 
-Tests cover:
-- User creation, login, and balance updates  
-- Item addition and removal  
-- Messaging functionality  
-- Payment processing and balance adjustment  
-- Thread safety with simulated concurrent access  
-- Unit testing implemented via **JUnit** in `test.UserTest.java`  
+All core components are tested using **JUnit**, ensuring robustness and correctness. Test classes are located in the `test/` directory.
 
----
-
+### ✅ Test Coverage Includes:
+- `UserTest.java` – Account creation, login, balance updates
+- `ItemTest.java` – Item addition and removal
+- `MessageTest.java` – Sending and retrieving messages
+- `PaymentTest.java` – Processing payments, balance updates, transaction status
+- Simulated **concurrent access** to test thread safety in manager classes
