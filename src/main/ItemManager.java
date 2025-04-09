@@ -19,8 +19,8 @@ import java.nio.file.Files;
  * It implements the IItemManager interface and provides functionalities to load,
  * save, create, delete, and search for items.
  *
- * Author: Lex Borrero and Tianzhi Li
- * Version: 2025-04-02
+ * @author  Lex Borrero and Tianzhi Li
+ * @version  2025-04-02
  */
 public class ItemManager implements IItemManager {
 
@@ -38,7 +38,7 @@ public class ItemManager implements IItemManager {
      * Note: Ensure that 'itemList' is properly initialized (e.g., with an ArrayList)
      * before calling loadItems.
      */
-    public ItemManager(){
+    public ItemManager() {
         // Example initialization if not done elsewhere:
         // itemList = new ArrayList<>();
         loadItems();

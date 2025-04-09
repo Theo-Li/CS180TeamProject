@@ -10,13 +10,13 @@ import java.util.List;
  * @version 04-06-2025
  */
 public interface IUser {
-     int getUserID();
-     String getUsername();
-     String getPassword();
-     double getBalance();
-     void setBalance(double balance);
-     List<Item> getItems();
-     void setItems(List<Item> items);
-     void addItem(Item item);
-     boolean removeItem(Item item);
+    int getUserID();
+    String getUsername();
+    String getPassword();
+    double getBalance();
+    void setBalance(double balance);
+    List<Item> getItems();
+    void setItems(List<Item> items);
+    void addItem(Item item);
+    boolean removeItem(Item item);
 }
