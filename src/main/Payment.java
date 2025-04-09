@@ -7,8 +7,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  * It implements the IPayment interface and encapsulates details such as payment ID,
  * buyer ID, seller ID, amount, timestamp, and payment status.
  *
- * Author: Tianzhi Li
- * Version: 2025-04-02
+ * @author  Tianzhi Li
+ * @version  2025-04-02
  */
 public class Payment implements IPayment {
 

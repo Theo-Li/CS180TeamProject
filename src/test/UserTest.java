@@ -133,7 +133,7 @@ public class UserTest {
         Assert.assertNotNull("After setItems(), getItems() should not return null", user.getItems());
 
         // Create an anonymous instance of Item.
-        Item item = new Item() {};
+        Item item = new Item() { };
         // Test addItem().
         user.addItem(item);
         Assert.assertTrue("After addItem(), getItems() should contain the added item",

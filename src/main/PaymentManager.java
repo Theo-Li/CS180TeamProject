@@ -8,8 +8,8 @@ import java.util.List;
  * It implements the IPaymentManager interface to handle loading, saving,
  * and processing payment data.
  *
- * Author: Tianzhi Li
- * Version: 2025-04-02
+ * @author  Tianzhi Li
+ * @version  2025-04-02
  */
 public class PaymentManager implements IPaymentManager {
     // List to hold all Payment objects in memory.

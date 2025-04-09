@@ -16,7 +16,7 @@ import java.io.*;
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @authors Fang Rui Shen
+ * @author Fang Rui Shen
  * @version April 6, 2025
  */
 public class MessageTest {

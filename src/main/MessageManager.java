@@ -8,8 +8,8 @@ import java.util.List;
  * The MessageManager class manages message-related operations.
  * It implements the IMessageManager interface and handles loading and saving messages.
  *
- * Author: Tianzhi Li
- * Version: 2025-04-02
+ * @author Tianzhi Li
+ * @version  2025-04-02
  */
 public class MessageManager implements IMessageManager {
     private List<Message> messageList = new ArrayList<>();

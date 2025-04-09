@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @authors Fang Rui Shen
+ * @author Fang Rui Shen
  * @version April 6, 2025
  */
 public class PaymentManagerTest {
@@ -91,7 +91,7 @@ public class PaymentManagerTest {
         File testFile = new File("payments.txt");
         String testInput = "";
 
-        testInput += "0,0,1,10.00," + LocalDateTime.now().toString() + "," + PaymentStatus.COMPLETED.name()+ "\n";
+        testInput += "0,0,1,10.00," + LocalDateTime.now().toString() + "," + PaymentStatus.COMPLETED.name() + "\n";
         testInput += "1,0,1,5.00," + LocalDateTime.now().toString() + "," + PaymentStatus.PENDING.name() + "\n";
         testInput += "2,1,2,10.00," + LocalDateTime.now().toString() + "," + PaymentStatus.FAILED.name() + "\n";
 

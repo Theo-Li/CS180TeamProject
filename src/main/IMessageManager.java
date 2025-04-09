@@ -1,6 +1,13 @@
 package main;
 import java.util.List;
 
+/**
+ *
+ *
+ *
+ * @author Tianzhi Li
+ * @version 2025-04-02
+ */
 public interface IMessageManager {
     void loadMessages();
     void saveMessages();

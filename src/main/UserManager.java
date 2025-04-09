@@ -9,8 +9,8 @@ import java.util.List;
  * It implements the IUserManager interface and handles loading,
  * saving, registering, logging in, and retrieving users.
  *
- * Author: Tianzhi Li
- * Version: 2025-04-02
+ * @author  Tianzhi Li
+ * @version  2025-04-02
  */
 public class UserManager implements IUserManager {
     // A list to store User objects.
@@ -89,7 +89,8 @@ public class UserManager implements IUserManager {
             // Loop through all users in the list.
             for (User user : userList) {
                 // Format the user's details: userID,username,password,balance.
-                String line = user.getUserID() + "," + user.getUsername() + "," + user.getPassword() + "," + user.getBalance();
+                String line = user.getUserID() + "," + user.getUsername() + "," +
+                        user.getPassword() + "," + user.getBalance();
                 // Write the line to the file.
                 bw.write(line);
                 // Start a new line for the next user.

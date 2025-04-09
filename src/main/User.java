@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Lex Borrero and Tianzhi LI
  * @version March 1, 2025
  */
-public class User implements IUser{
+public class User implements IUser {
     // Unique identifier for each user
     private int userID;
 
