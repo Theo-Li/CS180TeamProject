@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @authors Fang Rui Shen
+ * @author Fang Rui Shen
  * @version April 6, 2025
  */
 public class UserManagerTest {
@@ -77,8 +77,10 @@ public class UserManagerTest {
         Assert.assertFalse("Ensure that UserManager is not abstract", Modifier.isAbstract(modifiers));
         Assert.assertEquals("Ensure that UserManager extends Object", Object.class, superclass);
         // User implements IUserManager, so there should be exactly one interface.
-        Assert.assertEquals("Ensure that UserManager implements exactly one interface", 1, interfaces.length);
-        Assert.assertEquals("Ensure that UserManager implements IUserManager", IUserManager.class, interfaces[0]);
+        Assert.assertEquals("Ensure that UserManager implements exactly one interface",
+                1, interfaces.length);
+        Assert.assertEquals("Ensure that UserManager implements IUserManager",
+                IUserManager.class, interfaces[0]);
     }
 
     /**
@@ -109,15 +111,21 @@ public class UserManagerTest {
         UserManager userManager = new UserManager();
         User user1 = new User("testUser1", "testPass1");
 
-        Assert.assertEquals("getUser() returns incorrect user", "testUser1", userManager.getUser(0).getUsername());
-        Assert.assertFalse("addUser() does not check duplicate username", userManager.addUser(user1));
-        Assert.assertFalse("registerUser() does not check duplicate username", userManager.registerUser("testUser1", "testPass1"));
+        Assert.assertEquals("getUser() returns incorrect user", "testUser1",
+                userManager.getUser(0).getUsername());
+        Assert.assertFalse("addUser() does not check duplicate username",
+                userManager.addUser(user1));
+        Assert.assertFalse("registerUser() does not check duplicate username",
+                userManager.registerUser("testUser1", "testPass1"));
 
         userManager.deleteUser(0);
-        Assert.assertTrue("deleteUser() incorrectly deleted user", userManager.addUser(user1));
+        Assert.assertTrue("deleteUser() incorrectly deleted user",
+                userManager.addUser(user1));
 
-        Assert.assertEquals("login() returns incorrect user", "testUser1", userManager.login("testUser1", "testPass1").getUsername());
-        Assert.assertNull("login() incorrectly verified user", userManager.login("testUser3", "testPass3"));
+        Assert.assertEquals("login() returns incorrect user", "testUser1",
+                userManager.login("testUser1", "testPass1").getUsername());
+        Assert.assertNull("login() incorrectly verified user",
+                userManager.login("testUser3", "testPass3"));
 
         lineCount = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(testFile))) {

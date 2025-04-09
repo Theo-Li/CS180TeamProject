@@ -77,8 +77,10 @@ public class PaymentManagerTest {
         Assert.assertFalse("Ensure that PaymentManager is not abstract", Modifier.isAbstract(modifiers));
         Assert.assertEquals("Ensure that PaymentManager extends Object", Object.class, superclass);
         // User implements IPaymentManager, so there should be exactly one interface.
-        Assert.assertEquals("Ensure that PaymentManager implements exactly one interface", 1, interfaces.length);
-        Assert.assertEquals("Ensure that PaymentManager implements IPaymentManager", IPaymentManager.class, interfaces[0]);
+        Assert.assertEquals("Ensure that PaymentManager implements exactly one interface",
+                1, interfaces.length);
+        Assert.assertEquals("Ensure that PaymentManager implements IPaymentManager",
+                IPaymentManager.class, interfaces[0]);
     }
 
     /**
@@ -115,16 +117,22 @@ public class PaymentManagerTest {
         User user2 = new User("testUser2", "testPass2");
         User user3 = new User("testUser3", "testPass3");
 
-        Assert.assertEquals("getUserBalance() returns incorrect balance", user1.getBalance(), paymentManager.getUserBalance(user1), 0.001);
-        Assert.assertEquals("getUserBalance() returns incorrect balance", user2.getBalance(), paymentManager.getUserBalance(user2), 0.001);
-        Assert.assertEquals("getUserBalance() returns incorrect balance", user3.getBalance(), paymentManager.getUserBalance(user3), 0.001);
+        Assert.assertEquals("getUserBalance() returns incorrect balance", user1.getBalance(),
+                paymentManager.getUserBalance(user1), 0.001);
+        Assert.assertEquals("getUserBalance() returns incorrect balance", user2.getBalance(),
+                paymentManager.getUserBalance(user2), 0.001);
+        Assert.assertEquals("getUserBalance() returns incorrect balance", user3.getBalance(),
+                paymentManager.getUserBalance(user3), 0.001);
 
         paymentManager.updateBalance(user1, 100.00);
         paymentManager.updateBalance(user2, 200.00);
         paymentManager.updateBalance(user3, 300.00);
-        Assert.assertEquals("Ensure updateBalance() updates balance correctly", user1.getBalance(), paymentManager.getUserBalance(user1), 0.001);
-        Assert.assertEquals("getUserBalance() returns incorrect balance", user2.getBalance(), paymentManager.getUserBalance(user2), 0.001);
-        Assert.assertEquals("getUserBalance() returns incorrect balance", user3.getBalance(), paymentManager.getUserBalance(user3), 0.001);
+        Assert.assertEquals("Ensure updateBalance() updates balance correctly", user1.getBalance(),
+                paymentManager.getUserBalance(user1), 0.001);
+        Assert.assertEquals("getUserBalance() returns incorrect balance", user2.getBalance(),
+                paymentManager.getUserBalance(user2), 0.001);
+        Assert.assertEquals("getUserBalance() returns incorrect balance", user3.getBalance(),
+                paymentManager.getUserBalance(user3), 0.001);
 
         paymentManager.processPayment(user1, user3, 50.00);
         lineCount = 0;

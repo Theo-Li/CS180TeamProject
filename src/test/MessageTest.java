@@ -72,7 +72,8 @@ public class MessageTest {
         Assert.assertFalse("Ensure that `Message` is NOT abstract!", Modifier.isAbstract(modifiers));
         Assert.assertEquals("Ensure that `Message` extends `Object`!", Object.class, superclass);
         // Message implements IMessage, so there should be exactly one interface.
-        Assert.assertEquals("Ensure that Message implements exactly one interface", 1, interfaces.length);
+        Assert.assertEquals("Ensure that Message implements exactly one interface",
+                1, interfaces.length);
         Assert.assertEquals("Ensure that Message implements IMessage", IMessage.class, interfaces[0]);
     }
 
@@ -83,15 +84,21 @@ public class MessageTest {
     public void testMessageFieldsAndMethods() {
         Message message = new Message(1, 1, "test message");
 
-        Assert.assertEquals("Ensure getSenderID() returns correct senderID", 1, message.getSenderID());
-        Assert.assertEquals("Ensure getReceiverID() returns correct receiverID", 1, message.getReceiverID());
-        Assert.assertEquals("Ensure getMessage() returns correct message", "test message", message.getMessage());
+        Assert.assertEquals("Ensure getSenderID() returns correct senderID",
+                1, message.getSenderID());
+        Assert.assertEquals("Ensure getReceiverID() returns correct receiverID",
+                1, message.getReceiverID());
+        Assert.assertEquals("Ensure getMessage() returns correct message",
+                "test message", message.getMessage());
 
         message.setSenderID(2);
         message.setReceiverID(2);
         message.setMessage("test message 2");
-        Assert.assertEquals("Ensure setSenderID() updates senderID correctly", 2, message.getSenderID());
-        Assert.assertEquals("Ensure setReceiverID() updates receiverID correctly", 2, message.getReceiverID());
-        Assert.assertEquals("Ensure setMessage() updates message correctly", "test message 2", message.getMessage());
+        Assert.assertEquals("Ensure setSenderID() updates senderID correctly",
+                2, message.getSenderID());
+        Assert.assertEquals("Ensure setReceiverID() updates receiverID correctly",
+                2, message.getReceiverID());
+        Assert.assertEquals("Ensure setMessage() updates message correctly",
+                "test message 2", message.getMessage());
     }
 }

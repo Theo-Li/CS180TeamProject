@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @authors Lex Borrero and Tianzhi LI (User class)
+ * @author Lex Borrero and Tianzhi LI (User class)
  * @version March 1, 2025
  */
 public class UserTest {
@@ -75,7 +75,8 @@ public class UserTest {
         Assert.assertFalse("Ensure that User is not abstract", Modifier.isAbstract(modifiers));
         Assert.assertEquals("Ensure that User extends Object", Object.class, superclass);
         // User implements IUser, so there should be exactly one interface.
-        Assert.assertEquals("Ensure that User implements exactly one interface", 1, interfaces.length);
+        Assert.assertEquals("Ensure that User implements exactly one interface",
+                1, interfaces.length);
         Assert.assertEquals("Ensure that User implements IUser", IUser.class, interfaces[0]);
     }
 
@@ -86,12 +87,15 @@ public class UserTest {
     public void testUserFieldsAndMethods() {
         User user = new User("testUser", "testPass");
 
-        Assert.assertEquals("getUsername() returns incorrect username", "testUser", user.getUsername());
-        Assert.assertEquals("getPassword() returns incorrect password", "testPass", user.getPassword());
+        Assert.assertEquals("getUsername() returns incorrect username",
+                "testUser", user.getUsername());
+        Assert.assertEquals("getPassword() returns incorrect password",
+                "testPass", user.getPassword());
         Assert.assertEquals("Initial balance should be 0.0", 0.0, user.getBalance(), 0.001);
 
         user.setBalance(100.0);
-        Assert.assertEquals("Ensure setBalance() updates balance correctly", 100.0, user.getBalance(), 0.001);
+        Assert.assertEquals("Ensure setBalance() updates balance correctly",
+                100.0, user.getBalance(), 0.001);
 
         Assert.assertTrue("Ensure getUserID() returns non-negative value", user.getUserID() >= 0);
 
@@ -107,7 +111,8 @@ public class UserTest {
     public void testUserIdIncrement() {
         User user1 = new User("user1", "pass1");
         User user2 = new User("user2", "pass2");
-        Assert.assertEquals("User IDs should increment sequentially", user1.getUserID() + 1, user2.getUserID());
+        Assert.assertEquals("User IDs should increment sequentially",
+                user1.getUserID() + 1, user2.getUserID());
     }
 
     /**
@@ -131,12 +136,14 @@ public class UserTest {
         Item item = new Item() {};
         // Test addItem().
         user.addItem(item);
-        Assert.assertTrue("After addItem(), getItems() should contain the added item", user.getItems().contains(item));
+        Assert.assertTrue("After addItem(), getItems() should contain the added item",
+                user.getItems().contains(item));
 
         // Test removeItem().
         boolean removed = user.removeItem(item);
         Assert.assertTrue("removeItem() should return true", removed);
-        Assert.assertFalse("After removeItem(), getItems() should not contain the removed item", user.getItems().contains(item));
+        Assert.assertFalse("After removeItem(), getItems() should not contain the removed item",
+                user.getItems().contains(item));
     }
 }
 

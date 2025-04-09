@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @authors Fang Rui Shen
+ * @author Fang Rui Shen
  * @version April 6, 2025
  */
 public class ItemTest {
@@ -75,7 +75,8 @@ public class ItemTest {
         Assert.assertFalse("Ensure that Item is not abstract", Modifier.isAbstract(modifiers));
         Assert.assertEquals("Ensure that Item extends Object", Object.class, superclass);
         // User implements IItem, so there should be exactly one interface.
-        Assert.assertEquals("Ensure that Item implements exactly one interface", 1, interfaces.length);
+        Assert.assertEquals("Ensure that Item implements exactly one interface",
+                1, interfaces.length);
         Assert.assertEquals("Ensure that Item implements IItem", IItem.class, interfaces[0]);
     }
 
@@ -90,7 +91,8 @@ public class ItemTest {
 
         Assert.assertEquals("getName() returns incorrect name", "testItem", item.getName());
         Assert.assertEquals("getPrice() returns incorrect price", 10.0, item.getPrice(), 0.001);
-        Assert.assertEquals("getPictureFilename() returns incorrect filename", "test filename", item.getPictureFileName());
+        Assert.assertEquals("getPictureFilename() returns incorrect filename", "test filename",
+                item.getPictureFileName());
         Assert.assertEquals("getSellerID() returns incorrect sellerID", 1, item.getSellerID());
 
         item.setItemID(2);
@@ -100,8 +102,10 @@ public class ItemTest {
         item.setSellerID(2);
         Assert.assertEquals("Ensure setItemID() updates itemID correctly", 2, item.getItemID());
         Assert.assertEquals("Ensure setName() updates name correctly", "testItem 2", item.getName());
-        Assert.assertEquals("Ensure setPrice() updates price correctly", 1.0, item.getPrice(), 0.001);
-        Assert.assertEquals("Ensure setPictureFilename() updates name correctly", "test filename 2", item.getPictureFileName());
+        Assert.assertEquals("Ensure setPrice() updates price correctly", 1.0, item.getPrice(),
+                0.001);
+        Assert.assertEquals("Ensure setPictureFilename() updates name correctly", "test filename 2",
+                item.getPictureFileName());
         Assert.assertEquals("Ensure setSellerID() updates name correctly", 2, item.getSellerID());
     }
 
@@ -112,7 +116,8 @@ public class ItemTest {
     public void testItemIdIncrement() {
         Item item1 = new Item("item1", 10.00, "filename1", 5);
         Item item2 = new Item("item2", 10.00, "filename2", 5);
-        Assert.assertEquals("Item IDs should increment sequentially", item1.getItemID() + 1, item2.getItemID());
+        Assert.assertEquals("Item IDs should increment sequentially",
+                item1.getItemID() + 1, item2.getItemID());
     }
 }
 

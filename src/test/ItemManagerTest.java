@@ -122,7 +122,8 @@ public class ItemManagerTest {
         Item first = items.get(0);
         Assert.assertEquals("First item's name should be 'TestItem1'", "TestItem1", first.getName());
         Assert.assertEquals("First item's price should be 10.0", 10.0, first.getPrice(), 0.001);
-        Assert.assertEquals("First item's picture filename should be 'test1.jpg'", "test1.jpg", first.getPictureFileName());
+        Assert.assertEquals("First item's picture filename should be 'test1.jpg'",
+                "test1.jpg", first.getPictureFileName());
         Assert.assertEquals("First item's seller ID should be 100", 100, first.getSellerID());
     }
 
@@ -151,8 +152,10 @@ public class ItemManagerTest {
         Item item = items.get(0);
         Assert.assertEquals("Created item's name should be 'NewItem'", "NewItem", item.getName());
         Assert.assertEquals("Created item's price should be 15.5", 15.5, item.getPrice(), 0.001);
-        Assert.assertEquals("Created item's picture filename should be 'new.jpg'", "new.jpg", item.getPictureFileName());
-        Assert.assertEquals("Created item's seller ID should match seller's userID", seller.getUserID(), item.getSellerID());
+        Assert.assertEquals("Created item's picture filename should be 'new.jpg'",
+                "new.jpg", item.getPictureFileName());
+        Assert.assertEquals("Created item's seller ID should match seller's userID", seller.getUserID(),
+                item.getSellerID());
     }
 
     /**
@@ -206,11 +209,13 @@ public class ItemManagerTest {
         // Search for items containing "Apple".
         List<Item> searchResult = manager.searchItems("Apple");
         // Should match only "Apple".
-        Assert.assertEquals("searchItems should return 1 item when searching for 'Apple'", 1, searchResult.size());
+        Assert.assertEquals("searchItems should return 1 item when searching for 'Apple'", 1,
+                searchResult.size());
 
         // Verify that each returned item's name contains "Apple".
         for (Item item : searchResult) {
-            Assert.assertTrue("Each search result should contain 'Apple' in the name", item.getName().contains("Apple"));
+            Assert.assertTrue("Each search result should contain 'Apple' in the name",
+                    item.getName().contains("Apple"));
         }
     }
 
@@ -221,8 +226,10 @@ public class ItemManagerTest {
     public void testConvertImageToBytes() {
         ItemManager manager = new ItemManager();
         
-        Assert.assertNotNull("convertImagesToBytes() returned null", manager.convertImageToBytes("apple.jpg"));
-        Assert.assertTrue("convertImagesToBytes() returned an empty list", manager.convertImageToBytes("apple.jpg").length != 0);
+        Assert.assertNotNull("convertImagesToBytes() returned null",
+                manager.convertImageToBytes("apple.jpg"));
+        Assert.assertTrue("convertImagesToBytes() returned an empty list",
+                manager.convertImageToBytes("apple.jpg").length != 0);
     }
 
     /**
@@ -234,6 +241,7 @@ public class ItemManagerTest {
         
         Item testItem = new Item("testItem", 10.00, "apple.jpg", 1);
         manager.displayItemImage(testItem.getItemID());
-        Assert.assertNotEquals("displayItemImage() could not find item", "Item with ID 0 not found.", getOutput());
+        Assert.assertNotEquals("displayItemImage() could not find item",
+                "Item with ID 0 not found.", getOutput());
     }
 }

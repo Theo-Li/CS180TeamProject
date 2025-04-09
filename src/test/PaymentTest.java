@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @authors Fang Rui Shen
+ * @author Fang Rui Shen
  * @version April 6, 2025
  */
 public class PaymentTest {
@@ -75,7 +75,8 @@ public class PaymentTest {
         Assert.assertFalse("Ensure that Payment is not abstract", Modifier.isAbstract(modifiers));
         Assert.assertEquals("Ensure that Payment extends Object", Object.class, superclass);
         // Payment implements IPayment, so there should be exactly one interface.
-        Assert.assertEquals("Ensure that Payment implements exactly one interface", 1, interfaces.length);
+        Assert.assertEquals("Ensure that Payment implements exactly one interface",
+                1, interfaces.length);
         Assert.assertEquals("Ensure that Payment implements IPayment", IPayment.class, interfaces[0]);
     }
 
@@ -91,12 +92,16 @@ public class PaymentTest {
 
         Assert.assertEquals("getBuyerID() returns incorrect buyerID", 1, payment.getBuyerID());
         Assert.assertEquals("getSellerID() returns incorrect sellerID", 1, payment.getSellerID());
-        Assert.assertEquals("getAmount() returns incorrect amount", 10.0, payment.getAmount(), 0.001);
-        Assert.assertEquals("getTimestamp() returns incorrect timestamp", payment.getTimestamp(), testAfterTimestamp);
-        Assert.assertEquals("getStatus() returns incorrect paymentStatus", PaymentStatus.COMPLETED, payment.getStatus());
+        Assert.assertEquals("getAmount() returns incorrect amount", 10.0,
+                payment.getAmount(), 0.001);
+        Assert.assertEquals("getTimestamp() returns incorrect timestamp",
+                payment.getTimestamp(), testAfterTimestamp);
+        Assert.assertEquals("getStatus() returns incorrect paymentStatus",
+                PaymentStatus.COMPLETED, payment.getStatus());
         
         payment.setStatus(PaymentStatus.FAILED);
-        Assert.assertEquals("Ensure setStatus() updates paymentStatus correctly", PaymentStatus.FAILED, payment.getStatus());
+        Assert.assertEquals("Ensure setStatus() updates paymentStatus correctly",
+                PaymentStatus.FAILED, payment.getStatus());
     }
 
     /**
@@ -106,7 +111,8 @@ public class PaymentTest {
     public void testPaymentIdIncrement() {
         Payment payment1 = new Payment(1, 1, 1.00, PaymentStatus.PENDING);
         Payment payment2 = new Payment(3, 3, 2.00, PaymentStatus.PENDING);
-        Assert.assertEquals("Payment IDs should increment sequentially", payment1.getPaymentID() + 1, payment2.getPaymentID());
+        Assert.assertEquals("Payment IDs should increment sequentially",
+                payment1.getPaymentID() + 1, payment2.getPaymentID());
     }
 }
 

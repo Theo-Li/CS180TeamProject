@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
  *
  * <p>Purdue University -- CS18000 -- Spring 2025</p>
  *
- * @authors Fang Rui Shen
+ * @author Fang Rui Shen
  * @version April 6, 2025
  */
 public class MessageManagerTest {
@@ -76,8 +76,10 @@ public class MessageManagerTest {
         Assert.assertFalse("Ensure that MessageManager is not abstract", Modifier.isAbstract(modifiers));
         Assert.assertEquals("Ensure that MessageManager extends Object", Object.class, superclass);
         // User implements IMessageManager, so there should be exactly one interface.
-        Assert.assertEquals("Ensure that MessageManager implements exactly one interface", 1, interfaces.length);
-        Assert.assertEquals("Ensure that MessageManager implements IMessageManager", IMessageManager.class, interfaces[0]);
+        Assert.assertEquals("Ensure that MessageManager implements exactly one interface",
+                1, interfaces.length);
+        Assert.assertEquals("Ensure that MessageManager implements IMessageManager",
+                IMessageManager.class, interfaces[0]);
     }
 
     /**
@@ -116,11 +118,16 @@ public class MessageManagerTest {
         List<Message> messagesForUser1 = messageManager.getMessagesForUser(user1);
         List<Message> messagesForUser2 = messageManager.getMessagesForUser(user2);
         List<Message> messagesForUser3 = messageManager.getMessagesForUser(user3);
-        Assert.assertTrue("getMessagesForUser() returns incorrect messages", messagesForUser1.size() == 5);
-        Assert.assertTrue("getMessagesForUser() returns incorrect messages", messagesForUser2.size() == 5);
-        Assert.assertTrue("getMessagesForUser() returns incorrect messages", messagesForUser3.size() == 0);
-        Assert.assertEquals("loadMessages() loads incorrect messages", "test message 1", messagesForUser1.get(0).getMessage());
-        Assert.assertEquals("loadMessages() loads incorrect messages", "test message 1", messagesForUser2.get(0).getMessage());
+        Assert.assertTrue("getMessagesForUser() returns incorrect messages",
+                messagesForUser1.size() == 5);
+        Assert.assertTrue("getMessagesForUser() returns incorrect messages",
+                messagesForUser2.size() == 5);
+        Assert.assertTrue("getMessagesForUser() returns incorrect messages",
+                messagesForUser3.size() == 0);
+        Assert.assertEquals("loadMessages() loads incorrect messages", "test message 1",
+                messagesForUser1.get(0).getMessage());
+        Assert.assertEquals("loadMessages() loads incorrect messages", "test message 1",
+                messagesForUser2.get(0).getMessage());
 
         messageManager.sendMessage(user2, user3, "test message 6");
         messagesForUser1 = messageManager.getMessagesForUser(user1);
@@ -133,8 +140,11 @@ public class MessageManagerTest {
         List<Message> conversationForUser1and2 = messageManager.getConversation(user1, user2);
         List<Message> conversationForUser1and3 = messageManager.getConversation(user1, user3);
         List<Message> conversationForUser2and3 = messageManager.getConversation(user2, user3);
-        Assert.assertTrue("getConversation() returns incorrect messages", conversationForUser1and2.size() == 5);
-        Assert.assertTrue("getConversation() returns incorrect messages", conversationForUser1and3.size() == 0);
-        Assert.assertTrue("getConversation() returns incorrect messages", conversationForUser2and3.size() == 1);
+        Assert.assertTrue("getConversation() returns incorrect messages",
+                conversationForUser1and2.size() == 5);
+        Assert.assertTrue("getConversation() returns incorrect messages",
+                conversationForUser1and3.size() == 0);
+        Assert.assertTrue("getConversation() returns incorrect messages",
+                conversationForUser2and3.size() == 1);
     }
 }
